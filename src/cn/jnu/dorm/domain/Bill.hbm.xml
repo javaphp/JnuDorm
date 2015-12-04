@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jnu.dorm.domain">
+	<class name="Bill" table="jnu_bill">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		<property name="yearMonth"/>
+		<property name="shouldPay"/>
+		<property name="alreadyPay"/>
+		<property name="water"/>
+		<property name="electricity"/>
+		<property name="waterPrice"/>
+		<property name="electricityPrice"/>
+		
+		<!-- student属性，本类与Student的多对多 -->
+		<set name="student" table="jnu_student_bill" lazy="false">
+			<key column="billId"></key>
+			<many-to-many class="Student" column="studentId"/>
+		</set>
+		
+		
+		<!-- dormInfo属性，本类与DormInfo的多对一 -->
+		<many-to-one name="dormInfo" class="DormInfo" column="dormInfoId"></many-to-one>
+		
+	</class>
+</hibernate-mapping>

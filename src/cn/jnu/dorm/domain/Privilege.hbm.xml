@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jnu.dorm.domain">
+	<class name="Privilege" table="jnu_privilege">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="url"/>
+		
+		<!-- roles属性，本类与Role的多对多 -->
+		<set name="roles" table="jnu_role_privilege" lazy="false">
+			<key column="privilegeId"></key>
+			<many-to-many class="Role" column="roleId"/>
+		</set>
+		
+		
+	</class>
+</hibernate-mapping>

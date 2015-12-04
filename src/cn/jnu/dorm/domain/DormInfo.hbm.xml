@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jnu.dorm.domain">
+	<class name="DormInfo" table="jnu_dorm">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="floor"/>
+		<property name="room"/>
+		
+		<!-- bill属性，本类与Bill的一对多 -->
+		<set name="bill">
+			<key column="dormInfoId"></key>
+			<one-to-many class="Bill"/>
+		</set>
+		
+		
+		<!-- student属性，本类与Student的一对多 -->
+		<set name="student">
+			<key column="dormInfoId"></key>
+			<one-to-many class="Student"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

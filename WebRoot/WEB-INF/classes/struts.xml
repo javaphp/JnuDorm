@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+
+    <include file="example.xml"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="test" class="testAction">
+        	<result>test.jsp</result>
+        </action>
+        
+        <action name="student_*" class="studentAction" method="{1}">
+        	<result name="list">/WEB-INF/jsp/studentAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/studentAction/saveUI.jsp</result>
+        	<result name="toList" type="redirectAction">student_list</result>
+        </action>
+        
+        <action name="dormInfo_*" class="dormInfoAction" method="{1}">
+        	<result name="list">/WEB-INF/jsp/dormInfoAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/dormInfoAction/saveUI.jsp</result>
+        	<result name="toList" type="redirectAction">dormInfo_list</result>
+        </action>
+        
+        <action name="bill_*" class="billAction" method="{1}">
+        	<result name="list">/WEB-INF/jsp/billAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/billAction/saveUI.jsp</result>
+        	<result name="toList" type="redirectAction">bill_list</result>
+        	<result name="room">/WEB-INF/jsp/billAction/selectAjax.jsp</result>
+        </action>
+        
+        <action name="user_*" class="userAction" method="{1}">
+        	<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+        	<result name="loginUI">/WEB-INF/jsp/userAction/login.jsp</result>
+        	<result name="registerUI">/WEB-INF/jsp/userAction/register.jsp</result>
+        	<result name="toList" type="redirectAction">user_list</result>
+        	<result name="toLoginUI" type="redirectAction">user_loginUI</result>
+        </action>
+        
+        <action name="home_*" class="homeAction" method="{1}">
+        	<result name="index">/WEB-INF/jsp/homeAction/index.jsp</result>
+        </action>
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>
