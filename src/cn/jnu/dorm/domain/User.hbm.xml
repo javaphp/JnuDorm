@@ -13,7 +13,7 @@
 		<property name="password"/>
 		
 		<!-- roles属性，本类与Role的多对多 -->
-		<set name="roles" table="jnu_user_role">
+		<set name="roles" table="jnu_user_role" lazy="false">
 			<key column="userId"></key>
 			<many-to-many class="Role" column="roleId"></many-to-many>
 		</set>

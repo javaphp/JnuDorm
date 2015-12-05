@@ -15,6 +15,21 @@
     <include file="example.xml"/>
 
     <package name="default" namespace="/" extends="struts-default">
+    
+    	<interceptors>
+    		<interceptor name="checkPrivilege" 
+    		class="cn.jnu.dorm.utils.CheckPrivilege"></interceptor>
+    		<interceptor-stack name="defaultStack">
+    			<interceptor-ref name="checkPrivilege"></interceptor-ref>
+    			<interceptor-ref name="defaultStack"></interceptor-ref>
+    		</interceptor-stack>
+    	</interceptors>
+    
+    	<global-results>
+    		<result name="loginUI" type="redirectAction">user_loginUI</result>
+    		<result name="noPrivilegeError" type="redirectAction">home_error</result>
+    	</global-results>
+    
         <action name="test" class="testAction">
         	<result>test.jsp</result>
         </action>
@@ -43,12 +58,22 @@
         	<result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
         	<result name="loginUI">/WEB-INF/jsp/userAction/login.jsp</result>
         	<result name="registerUI">/WEB-INF/jsp/userAction/register.jsp</result>
+        	<result name="setRoleUI">/WEB-INF/jsp/userAction/setRole.jsp</result>
         	<result name="toList" type="redirectAction">user_list</result>
         	<result name="toLoginUI" type="redirectAction">user_loginUI</result>
         </action>
         
+        <action name="role_*" class="roleAction" method="{1}">
+        	<result name="list">/WEB-INF/jsp/roleAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/roleAction/saveUI.jsp</result>
+        	<result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/setPrivilege.jsp</result>
+        	<result name="toList" type="redirectAction">role_list</result>
+        </action>
+        
         <action name="home_*" class="homeAction" method="{1}">
         	<result name="index">/WEB-INF/jsp/homeAction/index.jsp</result>
+        	<result name="error">/WEB-INF/jsp/homeAction/error.jsp</result>
+        	<result name="left">/WEB-INF/jsp/homeAction/left.jsp</result>
         </action>
     </package>
 

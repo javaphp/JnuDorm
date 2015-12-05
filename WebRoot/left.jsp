@@ -11,7 +11,7 @@
 	<body>
 		<script type="text/javascript">
 		$(document).ready(function() {
-			window.location.href = "student_list.action";
+			window.location.href = "home_left.action";
 		}); 
 		</script>
 	</body>

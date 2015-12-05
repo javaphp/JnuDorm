@@ -9,6 +9,8 @@ public class Privilege {
 	public String url;
 	
 	public Set<Role> roles;
+	public Privilege parent;
+	public Set<Privilege> children;
 
 	public int getId() {
 		return id;
@@ -42,10 +44,26 @@ public class Privilege {
 		this.roles = roles;
 	}
 
-	public Privilege(String name, String url) {
-		super();
+	public Privilege(String name, String url, Privilege parent) {
 		this.name = name;
 		this.url = url;
+		this.parent = parent;
+	}
+
+	public Privilege getParent() {
+		return parent;
+	}
+
+	public void setParent(Privilege parent) {
+		this.parent = parent;
+	}
+
+	public Set<Privilege> getChildren() {
+		return children;
+	}
+
+	public void setChildren(Set<Privilege> children) {
+		this.children = children;
 	}
 
 	public Privilege() {

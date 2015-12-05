@@ -12,11 +12,11 @@
 </script>
 
 	</head>
-	<frameset rows="59,*,59" cols="*" frameborder="no" border="0"
+	<frameset rows="59,*,59" cols="*" frameborder="2px" border="0"
 		framespacing="0">
 		<frame src="${pageContext.request.contextPath}/top.jsp"
 			name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
-		<frameset cols="20%,*" frameborder="no" border="0" framespacing="0">
+		<frameset cols="10%,*" frameborder="no" border="0" framespacing="0">
 			<frame src="${pageContext.request.contextPath}/left.jsp"
 				name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" />
 			<frame src=""

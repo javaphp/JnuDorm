@@ -1,6 +1,7 @@
 package cn.jnu.dorm.action;
 
 import java.security.MessageDigest;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 
 import cn.jnu.dorm.base.BaseAction;
+import cn.jnu.dorm.domain.Role;
 import cn.jnu.dorm.domain.User;
 
 @Controller
@@ -18,6 +20,7 @@ public class UserAction extends BaseAction<User> {
 	
 	public String userName;
 	public String myPassword;
+	public Integer[] roleIds;
 
 	public String addUI() throws Exception {
 		return "saveUI";
@@ -80,8 +83,31 @@ public class UserAction extends BaseAction<User> {
 		}
 	}
 	
+	public String logout() throws Exception {
+		ActionContext.getContext().getSession().remove("user");
+		return "loginUI";
+	}
+	
+	public String setRoleUI() throws Exception {
+		User user = userService.findById(model.getId());
+		ActionContext.getContext().getValueStack().push(user);
+		
+		List<Role> roleList = roleService.findAll();
+		ActionContext.getContext().put("roleList", roleList);
+		return "setRoleUI";
+	}
+	
+	public String setRole() throws Exception {
+		User user = userService.findById(model.getId());
+		
+		List<Role> roleList = roleService.findByIds(roleIds);
+		user.setRoles(new HashSet<Role>(roleList));
+		userService.update(user);
+		return "toList";
+	}
+	
 	public String checkUserName() throws Exception {
-		return "";
+		return "toList";
 	}
 
 	public String getUserName() {
@@ -98,6 +124,14 @@ public class UserAction extends BaseAction<User> {
 
 	public void setMyPassword(String myPassword) {
 		this.myPassword = myPassword;
+	}
+
+	public Integer[] getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(Integer[] roleIds) {
+		this.roleIds = roleIds;
 	}
 	
 }

@@ -52,5 +52,12 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 		getSession().update(entity);
 	}
 
+	public List<T> findByIds(Integer[] ids) {
+		return getSession().createQuery(
+				"FROM " + clazz.getSimpleName() + " clazz WHERE clazz.id IN (:ids)")
+				.setParameterList("ids", ids)
+				.list();
+	}
+
 	
 }

@@ -24,23 +24,30 @@ public class Installer {
 	
 	@Transactional
 	public void install() {
-		Privilege privilegeStudent,privilegeBill, privilegeDorm;
+		Privilege top, privilegeStudent,privilegeBill, privilegeDorm;
 		Session session = sessionFactory.getCurrentSession();
-		privilegeStudent = new Privilege("学生列表", "/student_list");
+		top = new Privilege("系统管理", null, null);
+		session.save(top);
+		privilegeStudent = new Privilege("学生管理", "/student_list", top);
 		session.save(privilegeStudent);
-		session.save(new Privilege("增加学生", "/student_add"));
-		session.save(new Privilege("修改学生信息", "/student_edit"));
-		session.save(new Privilege("删除学生", "/student_delete"));
+		session.save(new Privilege("学生列表", "/student_list", privilegeStudent));
+		session.save(new Privilege("增加学生", "/student_add", privilegeStudent));
+		session.save(new Privilege("修改学生信息", "/student_edit", privilegeStudent));
+		session.save(new Privilege("删除学生", "/student_delete", privilegeStudent));
 		
-		session.save(new Privilege("账单列表", "/bill_list"));
-		session.save(new Privilege("增加账单", "/bill_add"));
-		session.save(new Privilege("修改账单", "/bill_edit"));
-		session.save(new Privilege("删除账单", "/bill_delete"));
-		
-		session.save(new Privilege("增加宿舍", "/dormInfo_add"));
-		session.save(new Privilege("修改宿舍信息", "/dormInfo_edit"));
-		session.save(new Privilege("宿舍列表", "/dormInfo_list"));
-		session.save(new Privilege("删除宿舍", "/dormInfo_delete"));
+		privilegeBill = new Privilege("账单管理", "/bill_list", top);
+		session.save(privilegeBill);
+		session.save(new Privilege("账单列表", "/bill_list", privilegeBill));
+		session.save(new Privilege("增加账单", "/bill_add", privilegeBill));
+		session.save(new Privilege("修改账单", "/bill_edit", privilegeBill));
+		session.save(new Privilege("删除账单", "/bill_delete", privilegeBill));
+
+		privilegeDorm = new Privilege("宿舍管理", "/dormInfo_list", top);
+		session.save(privilegeDorm);
+		session.save(new Privilege("宿舍列表", "/dormInfo_list", privilegeDorm));
+		session.save(new Privilege("增加宿舍", "/dormInfo_add", privilegeDorm));
+		session.save(new Privilege("修改宿舍信息", "/dormInfo_edit", privilegeDorm));
+		session.save(new Privilege("删除宿舍", "/dormInfo_delete", privilegeDorm));
 		
 	}
 	

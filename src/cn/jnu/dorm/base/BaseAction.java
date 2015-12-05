@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import cn.jnu.dorm.domain.Student;
 import cn.jnu.dorm.service.BillService;
 import cn.jnu.dorm.service.DormInfoService;
+import cn.jnu.dorm.service.PrivilegeService;
+import cn.jnu.dorm.service.RoleService;
 import cn.jnu.dorm.service.StudentService;
 import cn.jnu.dorm.service.UserService;
 import cn.jnu.dorm.service.impl.BillServiceImpl;
@@ -43,6 +45,10 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected BillService billService;
 	@Resource
 	protected UserService userService;
+	@Resource
+	protected RoleService roleService;
+	@Resource
+	protected PrivilegeService privilegeService;
 	
 	public T getModel() {
 		return model;

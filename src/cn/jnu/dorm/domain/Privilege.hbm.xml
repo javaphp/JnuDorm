@@ -17,6 +17,14 @@
 			<many-to-many class="Role" column="roleId"/>
 		</set>
 		
+		<!-- parent属性，本类与Privilege的多对一 -->
+		<many-to-one name="parent" class="Privilege" column="parentId"></many-to-one>
+		
+		<!-- children属性，本类与Privilege的一对多 -->
+		<set name="children" order-by="id ASC">
+			<key column="parentId"></key>
+			<one-to-many class="Privilege"/>
+		</set>
 		
 	</class>
 </hibernate-mapping>

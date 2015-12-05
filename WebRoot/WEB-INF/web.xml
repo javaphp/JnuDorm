@@ -13,6 +13,19 @@
   		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
 	
+	<listener>
+		<listener-class>cn.jnu.dorm.utils.InitListener</listener-class>
+	</listener>
+	
+	<!-- 配置openSessionInView -->
+	 <filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping> 
 	
 	<!-- 配置struts2的核心过滤器 -->
 	<filter>
@@ -24,10 +37,10 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
-    
-	
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+
+	 
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

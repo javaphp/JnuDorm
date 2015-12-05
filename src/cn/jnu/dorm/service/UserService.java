@@ -20,4 +20,6 @@ public interface UserService {
 
 	boolean checkUserName(String name);
 
+	void update(User user);
+
 }

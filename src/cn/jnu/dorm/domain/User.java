@@ -1,6 +1,9 @@
 package cn.jnu.dorm.domain;
 
+import java.util.Collection;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
 
 
 public class User {
@@ -12,6 +15,35 @@ public class User {
 	
 	public Set<Role> roles;  //角色，用户与角色是多对多
 
+	public boolean hasPrivilegeByUrl(String url) {
+		//去掉后面的参数
+		int pos = url.indexOf("?");
+		if(pos > -1) {
+			url = url.substring(0, pos);
+		}
+		//去掉UI后缀
+		if(url.endsWith("UI")){
+			url = url.substring(0, url.length() -2);
+		}
+		
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext.getContext()
+		.getApplication().get("allPrivilegeUrls");
+		if(!allPrivilegeUrls.contains(url)) {
+			return true;
+		} else {
+			for(Role role:roles) {
+				for(Privilege priv : role.getPrivileges()) {
+					if(url.equals(priv.getUrl())) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

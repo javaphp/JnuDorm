@@ -29,7 +29,7 @@
 	  			<td>${id }</td>
 	  			<td>${name }</td>
 	  			<td>${email }</td>
-	  			<td><s:a action="user_setPrivilege?id=%{id}" >设置权限</s:a>
+	  			<td><s:a action="user_setRoleUI?id=%{id}" >设置角色</s:a>
 	  			<s:a action="user_delete?id=%{id}" >删除</s:a></td>
 	  		</tr>
 	  	</s:iterator>

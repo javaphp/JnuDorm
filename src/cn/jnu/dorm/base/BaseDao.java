@@ -14,4 +14,5 @@ public interface BaseDao<T> {
 	
 	void update(T entity);
 	
+	List<T> findByIds(Integer[] ids); 
 }
