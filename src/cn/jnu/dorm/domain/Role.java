@@ -9,6 +9,7 @@ public class Role {
 	
 	public Set<Privilege> privileges; //权限，角色与权限的多对多
 	public Set<User> users;
+	public Set<Student> students;
 
 	public Set<User> getUsers() {
 		return users;
@@ -40,6 +41,14 @@ public class Role {
 
 	public void setPrivileges(Set<Privilege> privileges) {
 		this.privileges = privileges;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 	
 }

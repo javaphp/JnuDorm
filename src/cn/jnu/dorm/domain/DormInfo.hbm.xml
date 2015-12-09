@@ -20,7 +20,7 @@
 		
 		
 		<!-- student属性，本类与Student的一对多 -->
-		<set name="student">
+		<set name="student" lazy="false">
 			<key column="dormInfoId"></key>
 			<one-to-many class="Student"/>
 		</set>

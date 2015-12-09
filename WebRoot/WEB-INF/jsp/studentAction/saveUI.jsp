@@ -5,6 +5,12 @@
   <head>
     <%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
     <title>修改学生信息</title>
+    <script type="text/javascript">
+    	
+    	function showRoom(name) {
+			$("#room").load("bill_room.action?dormName=" + name);	
+        }
+    </script>
   </head>
    
   <body>
@@ -80,6 +86,17 @@
 			<label for="campus" class="col-sm-2 control-label">校区</label>
 			<div class="col-sm-10">
 				<s:textfield name="campus" cssClass="form-control" id="campus"></s:textfield>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="dorm" class="col-sm-2 control-label">宿舍</label>
+			<div class="col-sm-10">
+				<s:select name="dormId" onchange="showRoom(this.value)" list="#dormInfoList" listKey="name" listValue="name" headerKey="" headerValue="请选择"></s:select>
+				<div id="room">
+					<select><option selected>请选择</option></select>
+				</div>
+				</p>
 			</div>
 		</div>
 		

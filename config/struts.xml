@@ -28,6 +28,7 @@
     	<global-results>
     		<result name="loginUI" type="redirectAction">user_loginUI</result>
     		<result name="noPrivilegeError" type="redirectAction">home_error</result>
+    		<result name="index" type="redirectAction">home_index</result>
     	</global-results>
     
         <action name="test" class="testAction">
@@ -38,6 +39,9 @@
         	<result name="list">/WEB-INF/jsp/studentAction/list.jsp</result>
         	<result name="saveUI">/WEB-INF/jsp/studentAction/saveUI.jsp</result>
         	<result name="toList" type="redirectAction">student_list</result>
+        	<result name="loginUI">/WEB-INF/jsp/studentAction/login.jsp</result>
+        	<result name="toBill" type="redirectAction">bill_myBill</result>
+        	<result name="toLoginUI" type="redirectAction">student_loginUI</result>
         </action>
         
         <action name="dormInfo_*" class="dormInfoAction" method="{1}">
@@ -51,6 +55,7 @@
         	<result name="saveUI">/WEB-INF/jsp/billAction/saveUI.jsp</result>
         	<result name="toList" type="redirectAction">bill_list</result>
         	<result name="room">/WEB-INF/jsp/billAction/selectAjax.jsp</result>
+        	<result name="myBill">/WEB-INF/jsp/billAction/myBill.jsp</result>
         </action>
         
         <action name="user_*" class="userAction" method="{1}">

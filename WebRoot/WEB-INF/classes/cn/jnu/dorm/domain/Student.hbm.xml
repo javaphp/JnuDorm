@@ -10,6 +10,7 @@
 		</id>
 		<property name="cardId"/>
 		<property name="name"/>
+		<property name="password"></property>
 		<property name="major"/>
 		<property name="college"/>
 		<property name="grade"/>
@@ -22,12 +23,18 @@
 		<property name="outDate"/>
 		
 		<!-- dormInfo属性，本类与DormInfo的多对一 -->
-		<many-to-one name="dormInfo" class="DormInfo" column="dormInfoId"></many-to-one>
+		<many-to-one name="dormInfo" class="DormInfo" column="dormInfoId" lazy="false"></many-to-one>
 		
 		<!-- bill属性，本类与Bill的多对多 -->
 		<set name="bill" table="jnu_student_bill" lazy="false">
 			<key column="studentId"></key>
 			<many-to-many class="Bill" column="billId"></many-to-many>
+		</set>
+		
+		<!-- roles属性，本类与Role的多对多 -->
+		<set name="roles" table="jnu_role_student" lazy="false">
+			<key column="studentId"></key>
+			<many-to-many class="Role" column="roleId"></many-to-many>
 		</set>
 		
 	</class>

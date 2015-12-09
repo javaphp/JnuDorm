@@ -77,7 +77,7 @@ public class UserAction extends BaseAction<User> {
 		if(userService.login(userName, passwordHex)) {
 			User user = userService.findByNameAndPassword(userName, passwordHex);
 			ActionContext.getContext().getSession().put("user", user);
-			return "toList";
+			return "index";
 		}else {
 			return "toLoginUI";
 		}

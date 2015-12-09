@@ -12,4 +12,6 @@ public interface RoleDao extends BaseDao<Role> {
 
 	List<Privilege> findTopPrivilege();
 
+	Role findByName(String name);
+
 }

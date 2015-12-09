@@ -10,7 +10,7 @@
     <script type="text/javascript">
     	
     	$(function(){
-    	//$(document).ready(function() {
+
 			$("[name=privilegeIds]").click(function(){
 				
 				$(this).siblings("ul").find("input").attr("checked", this.checked);
@@ -34,17 +34,17 @@
 		<ul id="tree">
 		<s:iterator value="#topPrivilegeList">
 	        <li><input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
-	        <s:property value="id"/>
+
 	        <label for="cb_${id}">${name }</label>
 			<ul>
 			<s:iterator value="children">
 				<li><input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
-				<s:property value="id"/>
+
 				<label for="cb_${id}">${name }</label>
 					<ul>
 					<s:iterator value="children">
 						<li><input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/>/>
-						<s:property value="id"/>
+
 						<label for="cb_${id}">${name }</label></li>
 					</s:iterator>
 					</ul>
@@ -55,7 +55,7 @@
 		</s:iterator>
 		</ul>
     	<s:submit cssClass="btn btn-primary"></s:submit>
-    	
+
    	</s:form>
    	<script type="text/javascript">
 	  	$("#tree").treeview();

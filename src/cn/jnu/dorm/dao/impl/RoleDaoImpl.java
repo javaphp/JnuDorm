@@ -25,4 +25,11 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
 				.list();
 	}
 
+	public Role findByName(String name) {
+		return (Role) getSession().createQuery(
+				"FROM Role r WHERE r.name = ?")
+				.setParameter(0, name)
+				.uniqueResult();
+	}
+
 }

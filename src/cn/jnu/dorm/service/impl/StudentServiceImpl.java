@@ -40,6 +40,16 @@ public class StudentServiceImpl implements StudentService{
 		studentDao.delete(student);
 	}
 
+	public Student findByCardIdAndPassword(int cardId, String passwordHex) {
+		return studentDao.findByCardIdAndPassword(cardId, passwordHex);
+	}
+
+	public List<Student> findList(int pageNum, int pageSize) {
+		int firstResult = (pageNum - 1) * pageSize + 1;
+		int maxResult = pageSize;
+		return studentDao.findList(pageNum, firstResult, maxResult);
+	}
+
 	
 
 }

@@ -53,4 +53,8 @@ public class RoleServiceImpl implements RoleService {
 		return roleDao.findByIds(roleIds);
 	}
 
+	public Role findByName(String name) {
+		return roleDao.findByName(name);
+	}
+
 }

@@ -59,5 +59,13 @@ public class BaseDaoImpl<T> implements BaseDao<T>{
 				.list();
 	}
 
+	public List<T> findList(int pageNum, int firstResult, int maxResult) {
+		return getSession().createQuery(
+				"FROM " + clazz.getSimpleName())
+				.setFirstResult(firstResult)
+				.setMaxResults(maxResult)
+				.list();
+	}
+
 	
 }

@@ -7,5 +7,7 @@ import cn.jnu.dorm.domain.Student;
 
 public interface StudentDao extends BaseDao<Student> {
 
+	Student findByCardIdAndPassword(int cardId, String passwordHex);
+
 	
 }

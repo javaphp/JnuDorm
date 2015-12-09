@@ -2,6 +2,7 @@ package cn.jnu.dorm.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 import cn.jnu.dorm.base.BaseAction;
 import cn.jnu.dorm.domain.Bill;
 import cn.jnu.dorm.domain.DormInfo;
+import cn.jnu.dorm.domain.Student;
+import cn.jnu.dorm.domain.User;
 import cn.jnu.dorm.utils.MyConstants;
 
 @Controller
@@ -90,6 +93,15 @@ public class BillAction extends BaseAction<Bill>{
 		bill.setElectricity(model.getElectricity());
 		bill.setWaterPrice(model.getWaterPrice());
 		bill.setElectricityPrice(model.getElectricityPrice());
+		
+		DormInfo dormInfo = dormInfoService.findById(dormId);
+		//bill.setDormInfo(dormInfo);
+		Set<Student> students = dormInfo.getStudent();
+		Set<Student> studentsCopy = students;
+		if(studentsCopy.size() != 0) {
+			//bill.setStudent(studentsCopy);
+		} 
+		
 		billService.update(bill);
 		return "toList";
 	}
@@ -106,6 +118,17 @@ public class BillAction extends BaseAction<Bill>{
 		List<DormInfo> dormInfoList = billService.findByName(dormName);
 		ActionContext.getContext().put("dormInfoList",dormInfoList);
 		return "room";
+	}
+	
+	public String myBill() throws Exception {
+		Student student = (Student) ActionContext.getContext().getSession().get("student");
+		DormInfo dormInfo = student.getDormInfo();
+		List<Bill> billList = billService.findUserBills(dormInfo);
+		int studentCount = dormInfo.getStudent().size();
+		
+		ActionContext.getContext().put("billList", billList);
+		ActionContext.getContext().put("studentCount", studentCount);
+		return "myBill";
 	}
 
 	// -----------------------------------------------------

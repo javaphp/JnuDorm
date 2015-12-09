@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.jnu.dorm.dao.BillDao;
 import cn.jnu.dorm.domain.Bill;
 import cn.jnu.dorm.domain.DormInfo;
+import cn.jnu.dorm.domain.User;
 import cn.jnu.dorm.service.BillService;
 
 @Service
@@ -46,5 +47,10 @@ public class BillServiceImpl implements BillService{
 	public List<DormInfo> findByName(String dormName) {
 		return billDao.findByName(dormName);
 	}
+
+	public List<Bill> findUserBills(DormInfo dormInfo) {
+		return billDao.findUserBills(dormInfo);
+	}
+
 
 }

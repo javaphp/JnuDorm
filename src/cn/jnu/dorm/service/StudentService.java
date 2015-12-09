@@ -16,4 +16,8 @@ public interface StudentService {
 
 	void delete(Student student);
 
+	Student findByCardIdAndPassword(int cardId, String passwordHex);
+
+	List<Student> findList(int pageNum, int pageSize);
+
 }

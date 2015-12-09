@@ -16,8 +16,7 @@
   <body>
   	<h1>学生列表</h1>
   	<input type="button" id="newStudent" onclick="createStudent()" class="btn btn-primary" value="创建新记录">
-    
-	<table class="table">
+  	<table class="table">
 		<tr>
     		<td>id</td>
     		<td>卡号</td>
@@ -34,7 +33,7 @@
     		<td>离校日期</td>
     		<td>操作</td>
     	</tr>
-	  <s:iterator value="#studentList">
+	  <s:iterator value="recordList">
     	<tr>
     		<td>${id}</td>
     		<td>${cardId }</td>
@@ -49,12 +48,30 @@
     		<td>${campus }</td>
     		<td>${inDate }</td>
     		<td>${outDate }</td>
-    		<td><s:a action="student_editUI?id=%{id}">修改</s:a></td>
-    		<td><s:a action="student_delete?id=%{id}">删除</s:a></td>
+    		<td><s:a action="student_editUI?id=%{id}">修改</s:a>
+    		<s:a action="student_delete?id=%{id}">删除</s:a></td>
     	</tr>
     	
     </s:iterator>
 	</table>
-
+  	<!-- 分页 -->
+	<ul class="pagination">
+	  <li><a href="#">&laquo;</a></li>
+	  <s:iterator begin="beginPageIndex" end="endPageIndex" var="num" status="status">
+		<s:if test="currentPage == #status.count">
+	  		<li class="disabled"><a href="student_list.action?pageNum=${currentPage}">${num }</a></li>
+	  	
+	  	</s:if>
+	  	<s:else>
+	  		<li class="active"><a href="student_list.action?pageNum=${num}">${num }</a></li>
+	  	</s:else>
+	  </s:iterator>
+	  <li><a href="#">&raquo;</a></li>
+	</ul>
+	
+  	
+    <!-- 
+	
+ -->
   </body>
 </html>

@@ -1,6 +1,8 @@
 package cn.jnu.dorm.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -40,6 +42,18 @@ public class User {
 			}
 		}
 		
+		return false;
+	}
+	
+	public boolean hasPrivilegeByName(String name) {
+		List<Role> roleList = new ArrayList(this.getRoles());
+		for(Role role : roleList) {
+			for(Privilege priv : role.getPrivileges()) {
+				if(name.equals(priv.getName())) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	

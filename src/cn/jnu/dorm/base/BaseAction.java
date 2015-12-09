@@ -54,4 +54,21 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 		return model;
 	}
 	
+	//·ÖÒ³---------------------------
+	protected int pageNum = 1;
+	protected int pageSize = 3;
+
+	public int getPageNum() {
+		return pageNum;
+	}
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	
 }

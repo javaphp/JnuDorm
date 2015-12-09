@@ -1,14 +1,19 @@
 package cn.jnu.dorm.domain;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Student {
 	
 	public int id;
 	public int cardId;
 	public String name;
+	public String password;
 	public String major;
 	public String college;
 	public int grade;
@@ -21,6 +26,7 @@ public class Student {
 	public Date inDate;
 	public Date outDate;
 	public Set<Bill> bill = new HashSet<Bill>();
+	public Set<Role> roles = new HashSet<Role>();
 	
 	public int getId() {
 		return id;
@@ -39,6 +45,13 @@ public class Student {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getMajor() {
 		return major;
@@ -113,6 +126,12 @@ public class Student {
 	public void setBill(Set<Bill> bill) {
 		this.bill = bill;
 	}
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	public Student() {
 		
 	}
@@ -132,6 +151,35 @@ public class Student {
 		this.campus = campus;
 		this.inDate = inDate;
 		this.outDate = outDate;
+	}
+	
+	//----------------------------------------------
+	public boolean hasPrivilegeByUrl(String url) {
+		//去掉后面的参数
+		int pos = url.indexOf("?");
+		if(pos > -1) {
+			url = url.substring(0, pos);
+		}
+		//去掉UI后缀
+		if(url.endsWith("UI")){
+			url = url.substring(0, url.length() -2);
+		}
+		
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext.getContext()
+		.getApplication().get("allPrivilegeUrls");
+		if(!allPrivilegeUrls.contains(url)) {
+			return true;
+		} else {
+			for(Role role:roles) {
+				for(Privilege priv : role.getPrivileges()) {
+					if(url.equals(priv.getUrl())) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 }

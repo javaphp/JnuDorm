@@ -15,4 +15,12 @@ import cn.jnu.dorm.domain.Student;
 @Repository
 class StudentDaoImpl extends BaseDaoImpl<Student> implements StudentDao {
 
+	public Student findByCardIdAndPassword(int cardId, String passwordHex) {
+		return (Student) getSession().createQuery(
+				"FROM Student s WHERE s.cardId = ? AND s.password = ?")
+				.setParameter(0, cardId)
+				.setParameter(1, passwordHex)
+				.uniqueResult();
+	}
+
 }

@@ -15,6 +15,7 @@ import cn.jnu.dorm.base.BaseAction;
 import cn.jnu.dorm.domain.Privilege;
 import cn.jnu.dorm.domain.Role;
 import cn.jnu.dorm.domain.User;
+import cn.jnu.dorm.service.RoleService;
 import cn.jnu.dorm.service.UserService;
 
 @Controller
@@ -23,6 +24,8 @@ public class HomeAction extends ActionSupport {
 
 	@Resource
 	private UserService userService;
+	@Resource
+	private RoleService roleService;
 	
 	public String index() throws Exception {
 		return "index";
@@ -38,13 +41,18 @@ public class HomeAction extends ActionSupport {
 		if(user == null) {
 			return "loginUI";
 		} else {
+			privilegeList = roleService.findTopPrivilege();
+			
+			/*
 			List<Role> roleList = new ArrayList<Role>();
 			roleList.addAll(user.getRoles());
 			for(Role role : roleList) {
 				for(Privilege priv : role.getPrivileges()) {
-					privilegeList.add(priv);
+					if(priv.getUrl() != null) {
+						privilegeList.add(priv);
+					}
 				}
-			}
+			}*/
 		}
 		ActionContext.getContext().put("privilegeList", privilegeList);
 		return "left";

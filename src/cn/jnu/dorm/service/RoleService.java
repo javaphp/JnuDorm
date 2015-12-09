@@ -23,4 +23,6 @@ public interface RoleService {
 
 	List<Role> findByIds(Integer[] roleIds);
 
+	Role findByName(String name);
+
 }

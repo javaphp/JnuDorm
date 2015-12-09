@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.jnu.dorm.domain.Bill;
 import cn.jnu.dorm.domain.DormInfo;
+import cn.jnu.dorm.domain.User;
 
 public interface BillService {
 
@@ -20,5 +21,8 @@ public interface BillService {
 	List<DormInfo> findDormBuilding();
 
 	List<DormInfo> findByName(String dormName);
+
+	List<Bill> findUserBills(DormInfo dormInfo);
+
 
 }

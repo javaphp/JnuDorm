@@ -22,5 +22,11 @@
 			<many-to-many class="User" column="userId"></many-to-many>
 		</set>
 		
+		<!-- students属性，本类与Student的多对多 -->
+		<set name="students" table="jnu_role_student">
+			<key column="roleId"></key>
+			<many-to-many class="Student" column="studentId"></many-to-many>
+		</set>
+		
 	</class>
 </hibernate-mapping>
